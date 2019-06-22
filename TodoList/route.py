@@ -6,11 +6,6 @@ from TodoList.model import Todo
 from TodoList.forms import PostForm
 import calendar
 
-@app.route("/calender",methods=["GET"])
-def cal():
-  calendar = calendar.calendar(2016)
-  global calendar
-  return calendar
 
 @app.route("/")
 @app.route("/home",methods=["GET"])
