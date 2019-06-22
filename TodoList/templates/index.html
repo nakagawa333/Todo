@@ -14,21 +14,40 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   </head>
   <body>
+
     <div class="container">
-    <h3>Todo List</h3>
+
+    <h3>タスク管理</h3>
+
+    <div class="card">
     <form action="/add" method="post">
     <div class = "form-group">
-      <label for="">Example label</label>
+      <label for="">タイトル</label>
+
       <input type="text" class="form-control" name="title">   
      </div>
 
      <div class="form-group">
-       <label for="">Todo Icerigi</label>
+       <label for="">内容</label>
+
        <input type="text" class="form-control" name="content">
       </div>
 
-      <button type="submit" class="btn btn-danger">Ekie</button>
+      <p>優先度</p>
+
+      <select class="custom-select custom-select-sm" name="section">
+        <option  value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+      </select>
+    
+
+      <button type="submit" class="btn btn-danger">送信</button>
     </form>
+  </div>
+
 
     <h3 style="margin-top:30px;">Result</h3>
     {% if todos == [] %}
@@ -40,10 +59,10 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">id</th>
-          <th scope="col">Todo Baslik</th>
-          <th scope="col">Todo icerik</th>
-          <th scope="col">Durum</th>
+          <th scope="col">タイトル</th>
+          <th scope="col">内容</th>
+          <th scope  = "col"> 優先度</th>
+          <th scope="col"></th>
           <th scope="col">Tamanla</th>
           <th scope="col">sill</th>
           </tr>
@@ -51,14 +70,14 @@
       <tbody>
         {% for todo in todos %}
         <tr>
-          <th scope="row">{{ todo.id }}</th>
           <td>{{ todo.title }}</td>
           <td>
             <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
+            <td>{{ todo.section }}</td>
           <td>{{ todo.complete }}</td>
 
-          <td><a href="/update/{{todo.id}}" class="btn btn-danger">Tamamla</a></td>
-          <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger">sil</a></td>
+          <td><a href="/update/{{todo.id}}" class="btn btn-danger">内容の変更</a></td>
+          <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger">完了</a></td>
 
           </tr>
         {% endfor %}
@@ -80,4 +99,7 @@
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- Jquery --->
+<script type=text/javascript src="{{url_for('static',filename="music.js")}}"></script>
     </body>
