@@ -22,7 +22,7 @@ def add():
   db.session.add(newTodo)
   db.session.commit()
   return redirect(url_for('home'))
-
+  
 @app.route("/update/<int:id>",methods=["GET","POST"])
 def update(id):
   form = PostForm()

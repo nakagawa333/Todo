@@ -48,7 +48,9 @@
     </form>
   </div>
 
-
+  <!--
+  <audio controls src="http://rei-yumesaki.up.seesaa.net/material/Rei-Yumesaki-Moe-48-Praise-Sugoi_nodesu.mp3" class="audio"></audio>
+-->
     <h3 style="margin-top:30px;">Result</h3>
     {% if todos == [] %}
     <div class="alert alert-wraning" role="alert">
@@ -63,21 +65,22 @@
           <th scope="col">内容</th>
           <th scope  = "col"> 優先度</th>
           <th scope="col"></th>
-          <th scope="col">Tamanla</th>
-          <th scope="col">sill</th>
+          <th scope="col">内容の変更</th>
+          <th scope="col">完了</th>
           </tr>
       </thead>
       <tbody>
         {% for todo in todos %}
-        <tr>
+
+        <tr class="back">
           <td>{{ todo.title }}</td>
           <td>
             <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
-            <td>{{ todo.section }}</td>
+            <td id="section">{{ todo.section }}</td>
           <td>{{ todo.complete }}</td>
 
           <td><a href="/update/{{todo.id}}" class="btn btn-danger">内容の変更</a></td>
-          <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger">完了</a></td>
+          <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger finish">完了</a></td>
 
           </tr>
         {% endfor %}
@@ -103,3 +106,6 @@
 <!-- Jquery --->
 <script type=text/javascript src="{{url_for('static',filename="music.js")}}"></script>
     </body>
+
+<style>
+</style>
