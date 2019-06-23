@@ -84,7 +84,7 @@
         {% for todo in todos %}
 
         <tr class="back">
-          <td id="section">{{ todo.section }}</td>
+          <td id="{{loop.index0}}">{{ todo.section }}</td>
           <td>{{ todo.title }}</td>
           <td>
             <a href="/detail/{{todo.id}}" style="color:black;">{{ todo.content }}</a></td>

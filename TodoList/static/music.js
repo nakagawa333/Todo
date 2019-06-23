@@ -13,7 +13,7 @@ $(function(){
 
 	for(var i = 0; i < $(".back").length; i++){
 
-		value = $(".back :eq("+i +")").text()
+		value = $("#"+i.toString()).text()
 		if(value=='A'){
 			$(".back:eq(" + i + ")").css("background-color","red");
 		}else if(value=='B'){
@@ -21,9 +21,9 @@ $(function(){
         } else if(value == "C"){
         	$(".back:eq(" + i + ")").css("background-color","pink");
         } else if(value == "D"){
-        	$(".back:eq(" + i + ")").css("background-color","white");
+        	$(".back:eq(" + i + ")").css("background-color","black");
         } else if(value == "E"){
-        	$(".back:eq(" + i + ")").css("backgroud-color","blue");
+        	$(".back:eq(" + i + ")").css("background-color","blue");
        }
 	}
 	//	alert("Hello");
