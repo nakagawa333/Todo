@@ -13,15 +13,17 @@ import calendar
 @app.route("/home",methods=["GET"])
 def home():
   todos = Todo.query.all()
-  return render_template("index.html",todos=todos)
+  total = Todo.query.count()
+  return render_template("index.html",todos=todos,total=total)
 
 @app.route("/sort",methods=["POST"])
 def sort():
   todos = db.session.query(Todo).\
       order_by(asc(Todo.section)).\
       all()
+  total = Todo.query.count()
+  return render_template("index.html",todos=todos,total=total)
 
-  return render_template("index.html",todos=todos)
 @app.route("/add",methods=["POST"])
 def add():
   title = request.form.get("title")
