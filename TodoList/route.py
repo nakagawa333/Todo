@@ -2,6 +2,8 @@ from flask import Flask,render_template,request,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from TodoList import app,db,bcrypt
 from TodoList.model import Todo
+from sqlalchemy import case 
+from sqlalchemy import asc
 
 from TodoList.forms import PostForm
 import calendar
@@ -13,6 +15,13 @@ def home():
   todos = Todo.query.all()
   return render_template("index.html",todos=todos)
 
+@app.route("/sort",methods=["POST"])
+def sort():
+  todos = db.session.query(Todo).\
+      order_by(asc(Todo.section)).\
+      all()
+
+  return render_template("index.html",todos=todos)
 @app.route("/add",methods=["POST"])
 def add():
   title = request.form.get("title")
@@ -22,7 +31,7 @@ def add():
   db.session.add(newTodo)
   db.session.commit()
   return redirect(url_for('home'))
-  
+
 @app.route("/update/<int:id>",methods=["GET","POST"])
 def update(id):
   form = PostForm()

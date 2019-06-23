@@ -51,20 +51,31 @@
   <!--
   <audio controls src="http://rei-yumesaki.up.seesaa.net/material/Rei-Yumesaki-Moe-48-Praise-Sugoi_nodesu.mp3" class="audio"></audio>
 -->
-    <h3 style="margin-top:30px;">Result</h3>
+ <div class="d-flex" style="margin-top:30px;">
+    <h3>タスク</h3>
+        <form action="/deleteall" method="post">
+          <button type="submit" class="btn btn-danger">全て消す</button>
+          </form>
+
+        <form action="/sort" method="post">
+          <button type="submit" class="btn btn-danger">優先順位に並び替える</button>
+          </form>
+    </div>
+  </div>
+
+    </div>
     {% if todos == [] %}
     <div class="alert alert-wraning" role="alert">
       Hearings bir todomoz bulnmuyor..
     </div>
     {% else %}
-
-    <table class="table">
+    
+    <table class="table w-75 mx-auto">
       <thead>
         <tr>
+          <th scope  = "col"> 優先度</th>
           <th scope="col">タイトル</th>
           <th scope="col">内容</th>
-          <th scope  = "col"> 優先度</th>
-          <th scope="col"></th>
           <th scope="col">内容の変更</th>
           <th scope="col">完了</th>
           </tr>
@@ -73,11 +84,10 @@
         {% for todo in todos %}
 
         <tr class="back">
+          <td id="section">{{ todo.section }}</td>
           <td>{{ todo.title }}</td>
           <td>
-            <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
-            <td id="section">{{ todo.section }}</td>
-          <td>{{ todo.complete }}</td>
+            <a href="/detail/{{todo.id}}" style="color:black;">{{ todo.content }}</a></td>
 
           <td><a href="/update/{{todo.id}}" class="btn btn-danger">内容の変更</a></td>
           <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger finish">完了</a></td>
@@ -86,13 +96,6 @@
         {% endfor %}
         </thead>
         </table>
-        <form action="/deleteall" method="post">
-          <button type="submit" class="btn btn-danger">全て消す</button>
-          </form>
-    </div>
-    </div>
-    
-    </form>
     {% endif %}
     
     
