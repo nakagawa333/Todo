@@ -8,6 +8,8 @@ from sqlalchemy import asc
 from TodoList.forms import PostForm
 import calendar
 
+import time
+
 
 @app.route("/")
 @app.route("/home",methods=["GET"])
@@ -51,6 +53,7 @@ def deleteTodo(id):
   todo = Todo.query.filter_by(id=id).first()
   db.session.delete(todo)
   db.session.commit()
+  time.sleep(1)
   return redirect(url_for('home'))
 
 @app.route("/detail/<int:id>")
