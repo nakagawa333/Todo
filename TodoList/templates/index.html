@@ -87,7 +87,7 @@
           <td id="{{loop.index0}}">{{ todo.section }}</td>
           <td>{{ todo.title }}</td>
           <td>
-            <a href="/detail/{{todo.id}}" style="color:black;">{{ todo.content }}</a></td>
+            <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
 
           <td><a href="/update/{{todo.id}}" class="btn btn-danger">内容の変更</a></td>
           <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger finish">完了</a></td>
@@ -111,4 +111,18 @@
     </body>
 
 <style>
+.back{
+  color: white;
+}
+
+a:link{
+  color:white;
+}
+
+a:visited{
+  color:white;
+}
+
+
+
 </style>
