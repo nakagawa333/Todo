@@ -9,3 +9,7 @@ class Todo(db.Model):
 
   def __repr__(self):
     return "Todo(title={0},content={1},section={2})".format(self.title,self.content,self.section)
+
+ # class UserShema(ma.Schema):
+ # 	class Meta:
+ # 		fields = ()

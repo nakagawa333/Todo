@@ -1,3 +1,4 @@
+# coding: utf-8
 from flask import Flask,render_template,request,redirect,url_for,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from TodoList import app,db,bcrypt
@@ -6,11 +7,9 @@ from sqlalchemy import case
 from sqlalchemy import asc
 
 from TodoList.forms import PostForm
-import calendar
 
 import time
 import json
-
 
 
 @app.route("/")
@@ -46,23 +45,23 @@ def add():
 
   return total
 
-
-
 @app.route("/add1",methods=["GET","POST"])
 def add1():
   totals = Todo.query.all()
-  titles =  Todo.query.filter(Todo.title == "Python").all()
+  # result = users_schema.dump(totals)
 
+  # output = json.dumps(totals)
 
-  total = Todo.query.count()
+  return jsonify({"name":"中川創聖"})
+  # total = Todo.query.count()
 
-  a = str(total)
-  # a = []
+  # a = str(total)
+  # # a = []
   
-  # for total in totals:
-  #   a.append(total)
+  # # for total in totals:
+  # #   a.append(total)
 
-  return a
+  # return a
 
 @app.route("/counttotal",methods=["POST"])
 def counttotal():
