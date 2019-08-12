@@ -5,6 +5,9 @@ from TodoList import app,db,bcrypt
 from TodoList.model import Todo
 from sqlalchemy import case 
 from sqlalchemy import asc
+from TodoList.model import UserSchema
+
+
 
 from TodoList.forms import PostForm
 
@@ -36,7 +39,6 @@ def add():
 
   total = title + content + section
 
-
   newTodos = Todo(title = title,content = content,section=section,complete=False)
   db.session.add(newTodos)
   db.session.commit()
@@ -45,29 +47,25 @@ def add():
 
   return total
 
-@app.route("/add1",methods=["GET","POST"])
-def add1():
+@app.route("/addAll",methods=["GET","POST"])
+def addAll():
+  user_schema = UserSchema()
+  resmodel = ""
+
   totals = Todo.query.all()
-  # result = users_schema.dump(totals)
+  total = Todo.query.count()
+  # result = user_schema.dump(totals)
 
-  # output = json.dumps(totals)
+  # return jsonify({"status":"ok","users":"nakagawa sosei","Nakagawa sosei":"Hello everyone"})
 
-  return jsonify({"name":"中川創聖"})
-  # total = Todo.query.count()
-
-  # a = str(total)
-  # # a = []
-  
-  # # for total in totals:
-  # #   a.append(total)
-
-  # return a
+  return "Hello"
 
 @app.route("/counttotal",methods=["POST"])
 def counttotal():
   total = Todo.query.count()
-  print(total)
-  return total
+  Stringtotal = str(total)
+
+  return Stringtotal
 
 
 @app.route("/update/<int:id>",methods=["GET","POST"])
@@ -88,7 +86,8 @@ def deleteTodo(id):
   db.session.delete(todo)
   db.session.commit()
   time.sleep(1)
-  return redirect(url_for('home'))
+
+
 
 @app.route("/detail/<int:id>")
 def detailTodo(id):

@@ -1,5 +1,7 @@
 from TodoList import db
 
+from TodoList import ma
+
 class Todo(db.Model):
   id = db.Column(db.Integer,primary_key=True)
   title = db.Column(db.String(200))
@@ -13,3 +15,10 @@ class Todo(db.Model):
  # class UserShema(ma.Schema):
  # 	class Meta:
  # 		fields = ()
+
+class UserSchema(ma.Schema):
+	class Meta:
+		model = Todo
+
+user_schema = UserSchema()
+user_schema = UserSchema(many=True)
