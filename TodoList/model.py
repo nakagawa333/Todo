@@ -16,9 +16,7 @@ class Todo(db.Model):
  # 	class Meta:
  # 		fields = ()
 
-class UserSchema(ma.Schema):
+class TodoSchema(ma.ModelSchema):
 	class Meta:
 		model = Todo
-
-user_schema = UserSchema()
-user_schema = UserSchema(many=True)
+		

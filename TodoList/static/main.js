@@ -1,13 +1,16 @@
 
 $(function(){
 	$("#addSubmit").on("click",function(event){
+	let title = $("#title").val();
+	let content = 	$("#content").val();
+	let section = $("#selecttask").val()
 		$.ajax({
 			url:"/add",
 			type:"POST",
 			data:{
-				"title":$("#title").val(),
-				"content":$("#content").val(),
-				"section":$("#selecttask").val()
+				title:title,
+				content:content,
+				section:section
 			}
 		})
 		.then(
@@ -23,6 +26,35 @@ $(function(){
 
 //1回目
 var sucessCallback = (function(data){
+
+	$("#tbody").append("<tr>" + "<td>" + data.section + "</td>" + "<td>"+  data.title + "</td>" +  "<td>"+  data.content + "</td>" + "</tr>");
+
+// 	$(function(){
+
+// 	let value = "";
+
+// 	//$("#section").text();
+
+// 	for(var i = 0; i < $(".back").length; i++){
+
+// 		value = $("#"+i.toString()).text()
+// 		if(value=='A'){
+// 			$(".back:eq(" + i + ")").css("background-color","red");
+// 			$(".back:eq(" + i + ")").css("color","white");
+// 		}else if(value=='B'){
+//            $(".back:eq(" + i + ")").css("background-color","orange");
+//         } else if(value == "C"){
+//         	$(".back:eq(" + i + ")").css("background-color","yellow");
+//         } else if(value == "D"){
+//         	$(".back:eq(" + i + ")").css("background-color","blue");
+//         } else if(value == "E"){
+//         	$(".back:eq(" + i + ")").css("background-color","purple");
+//        }
+// 	}
+// 	//	alert("Hello");
+	
+// });
+
 	$.ajax({
 		url:"/counttotal",
 		type:"POST"
@@ -34,34 +66,16 @@ var sucessCallback = (function(data){
 })
 
 var errorCallback = (function(){
-	alert("おっぱい");
+	alert("Error");
 })
 
 //2回目
 var sucessCallback_a = function(data){
 	$("#tasktotal").text("リスト数(" + data + ")");
-	$.ajax({
-		url:"/addAll",
-		type:"POST",
-		dataType:"json"
-	})
-	.then(
-		sucessCallback_b,
-		errorCallback_b
-	)
+	console.log(data);
 }
 
 var errorCallback_a = function(){
 	alerr("ErrorA");
-}
-
-//3回目
-var sucessCallback_b = function(data){
-	alert("SucessB");
-
-}
-
-var errorCallback_b = function(){
-	alert("ErrorB");
 }
 

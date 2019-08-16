@@ -1,5 +1,10 @@
 $(function(){
 	$("#deleteall").on("click",function(){
+		let tbody = $("#tbody").children();
+		if(tbody){
+			alert("ee");
+		}
+
 		$.ajax({
 			url:"deleteall",
 			type:"POST"
@@ -9,7 +14,7 @@ $(function(){
 			 /*データベースのカウント */
 			$("#tasktotal").text("リスト数(" + data + ")");
 			/* テーブルの要素を削除*/
-			$("#tbody").css("display","none");
+			$(".back").remove();
 		})
 
 		.fail((data) => {

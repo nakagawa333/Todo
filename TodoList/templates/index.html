@@ -100,16 +100,57 @@
 
         {% for todo in todos %}
 
-        <tr class="back">
+        <tr class="back" id = "back{{ todo.id}}"todos_id="{{ todo.id}}"> 
           <td id="{{loop.index0}}">{{ todo.section }}</td>
           <td>{{ todo.title }}</td>
           <td>
             <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
 
-          <td><a href="/update/{{todo.id}}" class="btn btn-danger">内容の変更</a></td>
-          <td><a href="/delete/{{(todo.id)}}" class="btn btn-danger finish">完了</a></td>
+          <td><button class="btn btn-danger " data-toggle="modal" data-target="#exampleModalLong" todos_id="{{todo.id}}">内容の変更</button></td>
+          <td><a  class="btn btn-danger finish" todos_id="{{todo.id}}">完了</a></td>
 
           </tr>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="card">
+    {{ form.hidden_tag() }}
+    <fieldset class="card-group">
+      <legend class="border-bottom mb-4"> {{ legend }}</legend>
+      <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {% if form.title.errors %}
+          {{ form.title(class="form-control form-control-lg is-invalid")}}
+          <div class="invalid-feedback">
+            {% for error in form.title.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+          {% else %}
+             {{ form.title(class="form-control form-control-lg")}}
+          {% endif %}
+         </div>
+         <div class="form-group">
+          {{ form.content.label(class="form-control-label")}}
+          {% if form.content.errors %}
+            {{ form.content(class="form-control form-control-lg is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.content.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% else %}
+              {{ form.content(class="form-control form-control-lg")}}
+            {% endif %}
+          </div>
+    </fieldset>
+
+    <div class="form-group" id = "modalfSubmit" todos_id="{{todo.id}}">
+      {{ form.submit(class="btn btn-outline-info modalfSubmit") }}
+    </div>
+</div>
+</div>
+
         {% endfor %}
         </tbody>
         </table>
@@ -118,10 +159,15 @@
     
     </div>
 
-     <!-- Bootstrap4  javascript -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    
 
-     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 <!-- Jquery --->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
