@@ -74,9 +74,8 @@
           <button type="submit" class="btn btn-danger" id="deleteall">全て消す</button>
           </form>
 
-        <form action="/sort" method="post">
-          <button type="submit" class="btn btn-danger" style="">優先順位に並び替える</button>
-          </form>
+          <button type="submit" class="btn btn-danger" id="sort">優先順位に並び替える</button>
+
     </div>
   </div>
   </div>
@@ -106,7 +105,7 @@
           <td>
             <a href="/detail/{{todo.id}}">{{ todo.content }}</a></td>
 
-          <td><button class="btn btn-danger " data-toggle="modal" data-target="#exampleModalLong" todos_id="{{todo.id}}">内容の変更</button></td>
+          <td><button class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" todos_id="{{todo.id}}">内容の変更</button></td>
           <td><a  class="btn btn-danger finish" todos_id="{{todo.id}}">完了</a></td>
 
           </tr>
@@ -152,26 +151,17 @@
 </div>
 
         {% endfor %}
-        </tbody>
-        </table>
     {% endif %}
-    
-    
-    </div>
-
-    
-
-
-
+</tbody>
+</table>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-
 <!-- Jquery --->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-
 
 <script type=text/javascript src="{{url_for('static',filename="music.js")}}"></script>
 
@@ -184,7 +174,7 @@
 <script type=text/javascript src="{{url_for('static',filename="yuifadeIn.js")}}"></script>
 
 <script type=text/javascript src="{{url_for('static',filename="delete.js")}}"></script>
-
-    </body>
+<script type=text/javascript src="{{url_for('static',filename="sort.js")}}"></script>
+</body>
 
 

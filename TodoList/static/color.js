@@ -1,7 +1,6 @@
 
 $(function(){
-
-	var value = "";
+    var value = "";
 
 	//$("#section").text();
 

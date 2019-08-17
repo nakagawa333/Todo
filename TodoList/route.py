@@ -22,12 +22,15 @@ def home():
 
 @app.route("/sort",methods=["POST"])
 def sort():
+  form = PostForm()
   todos = db.session.query(Todo).\
       order_by(asc(Todo.section)).\
       all()
-  total = Todo.query.count()
-  return render_template("index.html",todos=todos,total=total)
 
+  todo_schema = TodoSchema(many=True)
+  result = todo_schema.dump(todos)
+  return jsonify({"todo":result})
+  
 @app.route("/add",methods=["POST"])
 def add():
   title = request.form["title"]
@@ -42,18 +45,12 @@ def add():
 
   return jsonify({"title":title,"content":content,"section":section})
 
-@app.route("/addAll",methods=["GET","POST"])
+@app.route("/total",methods=["GET","POST"])
 def addAll():
-  #user_schema = UserSchema()
-  resmodel = ""
-
   totals = Todo.query.all()
-  total = Todo.query.count()
-  # result = user_schema.dump(totals)
-
-  # return jsonify({"status":"ok","users":"nakagawa sosei","Nakagawa sosei":"Hello everyone"})
-
-  return "Hello"
+  todo_schema = TodoSchema(many=True)
+  result = todo_schema.dump(totals)
+  return jsonify({"todo":result})
 
 @app.route("/counttotal",methods=["POST"])
 def counttotal():
@@ -86,11 +83,11 @@ def deleteTodo():
   db.session.commit()
   time.sleep(1)
 
+  ##データの数のカウント
   total = Todo.query.count()
   Stringtotal = str(total)
 
   return Stringtotal
-
 
 
 @app.route("/detail/<int:id>")

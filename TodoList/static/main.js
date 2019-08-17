@@ -27,34 +27,12 @@ $(function(){
 //1回目
 var sucessCallback = (function(data){
 
-	$("#tbody").append("<tr>" + "<td>" + data.section + "</td>" + "<td>"+  data.title + "</td>" +  "<td>"+  data.content + "</td>" + "</tr>");
 
-// 	$(function(){
-
-// 	let value = "";
-
-// 	//$("#section").text();
-
-// 	for(var i = 0; i < $(".back").length; i++){
-
-// 		value = $("#"+i.toString()).text()
-// 		if(value=='A'){
-// 			$(".back:eq(" + i + ")").css("background-color","red");
-// 			$(".back:eq(" + i + ")").css("color","white");
-// 		}else if(value=='B'){
-//            $(".back:eq(" + i + ")").css("background-color","orange");
-//         } else if(value == "C"){
-//         	$(".back:eq(" + i + ")").css("background-color","yellow");
-//         } else if(value == "D"){
-//         	$(".back:eq(" + i + ")").css("background-color","blue");
-//         } else if(value == "E"){
-//         	$(".back:eq(" + i + ")").css("background-color","purple");
-//        }
-// 	}
-// 	//	alert("Hello");
-	
-// });
-
+	// $("#tbody").append(`<tr id="back">  <td>  ${data.section}  </td>  
+	// 	                                 <td>   ${data.title}  </td>  <td>  ${data.content}  </td>
+	// 	                                 <td><button class="btn btn-primary" data-toggle= data-target= todos_id=> 内容の変更 </button></td>
+	// 	                                 <td> <button class="btn btn-danger" todos_id=${data}> 完了 </button> </td>
+	// 	                                 </tr>`); 
 	$.ajax({
 		url:"/counttotal",
 		type:"POST"
@@ -72,10 +50,25 @@ var errorCallback = (function(){
 //2回目
 var sucessCallback_a = function(data){
 	$("#tasktotal").text("リスト数(" + data + ")");
-	console.log(data);
+
+	$.ajax({
+		url:"/total",
+		type:"POST"
+	})
+	.then(
+		sucessCallback_b,
+		errorCallback_b
+	)
 }
 
 var errorCallback_a = function(){
 	alerr("ErrorA");
 }
 
+var sucessCallback_b = function(data){
+	console.log(data.todo);
+}
+
+var errorCallback_b = function(){
+	alert("ErrorB");
+}
