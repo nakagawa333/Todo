@@ -5,11 +5,11 @@ from TodoList import app,db,bcrypt
 from TodoList.model import Todo,TodoSchema
 from sqlalchemy import case 
 from sqlalchemy import asc
+from sqlalchemy import or_
 from TodoList.forms import PostForm
 
 import time
 import json
-
 
 @app.route("/")
 @app.route("/home",methods=["GET"])
@@ -31,6 +31,20 @@ def sort():
   result = todo_schema.dump(todos)
   return jsonify({"todo":result})
   
+@app.route("/search",methods=["POST"])
+def search():
+  req = request.form["req"]
+  print(req)
+  searches = db.session.query(Todo).\
+                                                   filter(or_(\
+                                                   Todo.title.like("%" + req + "%"),\
+                                                   Todo.content.like("%" + req + "%"),\
+                                                   )).all()
+
+  todo_schema = TodoSchema(many=True)
+  result = todo_schema.dump(searches)
+  return jsonify({"searches":result})
+
 @app.route("/add",methods=["POST"])
 def add():
   title = request.form["title"]
@@ -45,12 +59,13 @@ def add():
 
   return jsonify({"title":title,"content":content,"section":section})
 
-@app.route("/total",methods=["GET","POST"])
-def addAll():
+@app.route("/total",methods=["POST"])
+def total():
   totals = Todo.query.all()
   todo_schema = TodoSchema(many=True)
   result = todo_schema.dump(totals)
   return jsonify({"todo":result})
+  
 
 @app.route("/counttotal",methods=["POST"])
 def counttotal():

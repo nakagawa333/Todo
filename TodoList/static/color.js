@@ -6,7 +6,7 @@ $(function(){
 
 	for(var i = 0; i < $(".back").length; i++){
 
-		value = $("#"+i.toString()).text()
+		 value = $("#"+i.toString()).text()
 		if(value=='A'){
 			$(".back:eq(" + i + ")").css("background-color","red");
 			$(".back:eq(" + i + ")").css("color","white");

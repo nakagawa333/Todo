@@ -14,7 +14,7 @@ $(function(){
 			$("#back" + todos_id ).remove();
 			$("#tasktotal").text("リスト数(" + data + ")");
 		})
-
+		
 		.fail(() => {
 			alert("Error");
 		}) 

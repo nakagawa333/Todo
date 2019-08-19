@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- icon -->
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <!-- font5 -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="static/yui.css">
+    <link rel="stylesheet" type="text/css" href="static/index.css">
   </head>
   <body>
-    <div class="balloon6" style="position:fixed; margin-top:-150px">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Todo</a>
+
+      <form class="form-inline my-2 my-lg-0" id="search" method="POST">
+      <input type="text" class="form-control"  name="input" id="search-input" placeholder="Search">
+      <button type="submit" class="btn btn-primary" id="searchSubmit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+</nav>
+
+    <div class="balloon6">
     <div class="faceicon">
    <img src="static/image/ai.jpg" style="height:100px; width:100px;">
    <h3 style="padding-left:20px;">yui</h3>
@@ -29,8 +40,7 @@
     </div>
   </div>
 
-
-    <div class="container" style="margin-top:200px;">
+  <div class="container">
 
     <h3>タスク管理</h3>
 
@@ -110,9 +120,15 @@
 
           </tr>
 
+        {% endfor %}
+    {% endif %}
+</tbody>
+</table>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-<div class="card">
+<div class="card w-75" id="modal">
     {{ form.hidden_tag() }}
     <fieldset class="card-group">
       <legend class="border-bottom mb-4"> {{ legend }}</legend>
@@ -144,24 +160,16 @@
           </div>
     </fieldset>
 
-    <div class="form-group" id = "modalfSubmit" todos_id="{{todo.id}}">
+    <div class="form-group" id = "modalfSubmit">
       {{ form.submit(class="btn btn-outline-info modalfSubmit") }}
     </div>
 </div>
 </div>
 
-        {% endfor %}
-    {% endif %}
-</tbody>
-</table>
-</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<!-- Jquery --->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 
 <script type=text/javascript src="{{url_for('static',filename="music.js")}}"></script>
 
@@ -174,7 +182,10 @@
 <script type=text/javascript src="{{url_for('static',filename="yuifadeIn.js")}}"></script>
 
 <script type=text/javascript src="{{url_for('static',filename="delete.js")}}"></script>
+
+<script type=text/javascript src="{{url_for('static',filename="search.js")}}"></script>
 <script type=text/javascript src="{{url_for('static',filename="sort.js")}}"></script>
+<script type=text/javascript src="{{url_for('static',filename="Modaladjustment.js")}}"></script>
 </body>
 
 

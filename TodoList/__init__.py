@@ -12,7 +12,6 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 ##json文字化けを回避
-
 app.config['JSON_AS_ASCII'] = False 
 
 bcrypt = Bcrypt(app)

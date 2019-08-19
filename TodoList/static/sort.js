@@ -7,13 +7,14 @@ $(function(){
 
 		.done((data) => {
 			let todos = data.todo;
+			console.log(data);
 			let tbody = $("#tbody");
 			tbody.empty();
 			appendHtml = ""
 			
 			for(i = 0;  i < todos.length; i++){
-				appendHtml +=(`<tr id="back" todos_id=${todos[i].id}>` + 
-					`<td>` + todos[i].section + `</td>` 
+				appendHtml +=(`<tr id="back${todos[i].id}" class=back todos_id=${todos[i].id}>` + 
+					`<td id=${i}>` + todos[i].section + `</td>` 
       				+ `<td>` + todos[i].title + `</td>` 
 					+`<td>` + todos[i].content + `</td>` 
 					+`<td>` +  `<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" todos_id=${todos[i].id}>` + "内容の変更" + `</button>`+ `</td>`
@@ -26,7 +27,7 @@ $(function(){
 			$(function(){
 			    var value = "";
 
-				for(var i = 0; i < $("#back").length; i++){
+				for(var i = 0; i < $(".back").length; i++){
 					value = $("#"+i.toString()).text()
 					if(value=='A'){
 						$(".back:eq(" + i + ")").css("background-color","red");
@@ -77,5 +78,3 @@ $(function(){
 		})
 	})
 })
-
-
